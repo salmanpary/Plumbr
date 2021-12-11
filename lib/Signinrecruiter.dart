@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:adobe_xd/pinned.dart';
+import 'package:plumbr/Recruiter.dart';
+import 'package:plumbr/Recruiterdashboard.dart';
+
+import 'package:plumbr/Start.dart';
 import './Forgotpassword.dart';
 import 'package:adobe_xd/page_link.dart';
 import './CreateAccountRecruiter.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
+final _auth = FirebaseAuth.instance;
+String email='';
+String pass='';
 class Signinrecruiter extends StatelessWidget {
   Signinrecruiter({
     Key key,
@@ -46,32 +53,22 @@ class Signinrecruiter extends StatelessWidget {
                   ),
                 ),
                 Pinned.fromPins(
-                  Pin(size: 120.0, middle: 0.2634),
+                  Pin(size: 200.0, middle: 0.2634),
                   Pin(size: 26.0, middle: 0.5303),
-                  child: Text(
-                    'Username',
-                    style: TextStyle(
-                      fontFamily: 'Roboto',
-                      fontSize: 20,
-                      color: const Color(0xff3c3c3c),
-                      fontWeight: FontWeight.w300,
-                    ),
-                    textAlign: TextAlign.left,
-                  ),
+                  child: TextField(decoration: InputDecoration(
+                    hintText: 'Username',
+                  ),onChanged: (String x){
+                    email=x;
+                  },),
                 ),
                 Pinned.fromPins(
-                  Pin(size: 120.0, middle: 0.2634),
+                  Pin(size: 200.0, middle: 0.2634),
                   Pin(size: 26.0, middle: 0.6161),
-                  child: Text(
-                    'Password',
-                    style: TextStyle(
-                      fontFamily: 'Roboto',
-                      fontSize: 20,
-                      color: const Color(0xff3c3c3c),
-                      fontWeight: FontWeight.w300,
-                    ),
-                    textAlign: TextAlign.left,
-                  ),
+                  child: TextField(decoration: InputDecoration(
+                    hintText: 'Password',
+                  ),onChanged: (String y){
+                    pass=y;
+                  },),
                 ),
                 Pinned.fromPins(
                   Pin(size: 164.0, end: 72.0),
@@ -192,18 +189,29 @@ class Signinrecruiter extends StatelessWidget {
                     ),
                   ),
                 ),
-                Pinned.fromPins(
-                  Pin(size: 64.0, middle: 0.504),
-                  Pin(size: 26.0, middle: 0.5714),
-                  child: Text(
-                    'Sign In',
-                    style: TextStyle(
-                      fontFamily: 'Roboto',
-                      fontSize: 20,
-                      color: const Color(0xffffffff),
-                      fontWeight: FontWeight.w300,
+                GestureDetector(onTap: ()async{
+                  final user = await _auth.signInWithEmailAndPassword(
+                      email: email, password: pass);
+                  if (user != null) {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                          return Recruiterdashboard();
+                        }));
+                  }
+                },
+                  child: Pinned.fromPins(
+                    Pin(size: 64.0, middle: 0.504),
+                    Pin(size: 26.0, middle: 0.5714),
+                    child: Text(
+                      'Sign In',
+                      style: TextStyle(
+                        fontFamily: 'Roboto',
+                        fontSize: 20,
+                        color: const Color(0xffffffff),
+                        fontWeight: FontWeight.w300,
+                      ),
+                      textAlign: TextAlign.left,
                     ),
-                    textAlign: TextAlign.left,
                   ),
                 ),
               ],

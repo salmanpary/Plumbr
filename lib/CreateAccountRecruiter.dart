@@ -2,7 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:adobe_xd/pinned.dart';
 import './Signinrecruiter.dart';
 import 'package:adobe_xd/page_link.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:get/get.dart';
+import 'package:plumbr/Controller.dart';
+final _auth = FirebaseAuth.instance;
+String username='';
+String email='';
+String phoneno='';
+String pass='';
+final controller = Get.put(Controller());
 class CreateAccountRecruiter extends StatelessWidget {
   CreateAccountRecruiter({
     Key key,
@@ -49,60 +57,43 @@ class CreateAccountRecruiter extends StatelessWidget {
                   ),
                 ),
                 Pinned.fromPins(
-                  Pin(size: 120.0, middle: 0.2762),
+                  Pin(size: 200.0, middle: 0.2762),
                   Pin(size: 26.0, middle: 0.5046),
-                  child: Text(
-                    'Username',
-                    style: TextStyle(
-                      fontFamily: 'Roboto',
-                      fontSize: 20,
-                      color: const Color(0xff3c3c3c),
-                      fontWeight: FontWeight.w300,
-                    ),
-                    textAlign: TextAlign.left,
+                  child: TextField(decoration: InputDecoration(
+                    hintText: 'Username',
+                  ),onChanged: (String x) async {
+
+username=x;
+                  },
                   ),
                 ),
                 Pinned.fromPins(
-                  Pin(size: 120.0, middle: 0.2762),
+                  Pin(size: 200.0, middle: 0.2762),
                   Pin(size: 26.0, middle: 0.5744),
-                  child: Text(
-                    'Email Id',
-                    style: TextStyle(
-                      fontFamily: 'Roboto',
-                      fontSize: 20,
-                      color: const Color(0xff3c3c3c),
-                      fontWeight: FontWeight.w300,
-                    ),
-                    textAlign: TextAlign.left,
-                  ),
+                  child: TextField(decoration: InputDecoration(
+                    hintText: 'Email id',
+
+                  ),onChanged: (String y){
+                    email=y;
+                  },),
                 ),
                 Pinned.fromPins(
-                  Pin(size: 136.0, middle: 0.288),
+                  Pin(size: 200.0, middle: 0.288),
                   Pin(size: 26.0, middle: 0.6442),
-                  child: Text(
-                    'Phone Number',
-                    style: TextStyle(
-                      fontFamily: 'Roboto',
-                      fontSize: 20,
-                      color: const Color(0xff3c3c3c),
-                      fontWeight: FontWeight.w300,
-                    ),
-                    textAlign: TextAlign.left,
-                  ),
+                  child: TextField(decoration: InputDecoration(
+                    hintText: 'Phone no',
+                  ),onChanged: (String z){
+                    phoneno=z;
+                  },),
                 ),
                 Pinned.fromPins(
-                  Pin(size: 120.0, middle: 0.2762),
+                  Pin(size: 200.0, middle: 0.2762),
                   Pin(size: 26.0, middle: 0.714),
-                  child: Text(
-                    'Password',
-                    style: TextStyle(
-                      fontFamily: 'Roboto',
-                      fontSize: 20,
-                      color: const Color(0xff3c3c3c),
-                      fontWeight: FontWeight.w300,
-                    ),
-                    textAlign: TextAlign.left,
-                  ),
+                  child: TextField(decoration: InputDecoration(
+                    hintText: 'Password',
+                  ),onChanged: (String r){
+                    pass=r;
+                  },),
                 ),
                 Pinned.fromPins(
                   Pin(size: 108.0, middle: 0.5211),
@@ -198,18 +189,30 @@ class CreateAccountRecruiter extends StatelessWidget {
                     ),
                   ),
                 ),
-                Pinned.fromPins(
-                  Pin(size: 64.0, middle: 0.504),
-                  Pin(size: 26.0, middle: 0.5714),
-                  child: Text(
-                    'Submit',
-                    style: TextStyle(
-                      fontFamily: 'Roboto',
-                      fontSize: 20,
-                      color: const Color(0xffffffff),
-                      fontWeight: FontWeight.w300,
+                GestureDetector(onTap: ()async{
+                  final newuser = await _auth.createUserWithEmailAndPassword(
+                      email: email, password: pass);
+                  if(newuser!=null){
+
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                          return Signinrecruiter();
+                        }));
+                  }
+                },
+                  child: Pinned.fromPins(
+                    Pin(size: 64.0, middle: 0.504),
+                    Pin(size: 26.0, middle: 0.5714),
+                    child: Text(
+                      'Submit',
+                      style: TextStyle(
+                        fontFamily: 'Roboto',
+                        fontSize: 20,
+                        color: const Color(0xffffffff),
+                        fontWeight: FontWeight.w300,
+                      ),
+                      textAlign: TextAlign.left,
                     ),
-                    textAlign: TextAlign.left,
                   ),
                 ),
               ],
