@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:adobe_xd/pinned.dart';
-import './Createaccount.dart';
 import './Signin.dart';
 import 'package:adobe_xd/page_link.dart';
-import './GooglePixel44XL1.dart';
+import './CreateAccount.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class Opening extends StatelessWidget {
@@ -16,26 +15,26 @@ class Opening extends StatelessWidget {
         children: <Widget>[
           Pinned.fromPins(
             Pin(start: -173.9, end: -307.9),
-            Pin(start: -317.4, end: -48.0),
+            Pin(start: -317.4, end: -5.0),
             child: Stack(
               children: <Widget>[
                 Pinned.fromPins(
-                  Pin(size: 115.0, middle: 0.4146),
-                  Pin(size: 13.0, end: 58.0),
+                  Pin(size: 84.0, middle: 0.4173),
+                  Pin(size: 26.0, end: 0.0),
                   child: Text(
                     'All Rights Reserved',
                     style: TextStyle(
-                      fontFamily: 'Roboto Mono',
+                      fontFamily: 'Roboto',
                       fontSize: 10,
                       color: const Color(0xff3c3c3c),
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.w100,
                     ),
                     textAlign: TextAlign.left,
                   ),
                 ),
                 Pinned.fromPins(
                   Pin(start: 0.0, end: 0.0),
-                  Pin(start: 0.0, end: 353.6),
+                  Pin(start: 0.0, end: 310.6),
                   child:
                       // Adobe XD layer: 'Bg' (shape)
                       SvgPicture.string(
@@ -45,56 +44,8 @@ class Opening extends StatelessWidget {
                   ),
                 ),
                 Pinned.fromPins(
-                  Pin(size: 158.0, middle: 0.4212),
-                  Pin(size: 48.0, middle: 0.6859),
-                  child:
-                      // Adobe XD layer: 'Create account' (component)
-                      PageLink(
-                    links: [
-                      PageLinkInfo(
-                        ease: Curves.easeInOut,
-                        duration: 0.4,
-                        pageBuilder: () => Signin(),
-                      ),
-                    ],
-                    child: Createaccount(),
-                  ),
-                ),
-                Pinned.fromPins(
-                  Pin(size: 158.0, middle: 0.4212),
-                  Pin(size: 48.0, middle: 0.6859),
-                  child:
-                      // Adobe XD layer: 'Create account' (component)
-                      PageLink(
-                    links: [
-                      PageLinkInfo(
-                        ease: Curves.easeInOut,
-                        duration: 0.4,
-                        pageBuilder: () => Signin(),
-                      ),
-                    ],
-                    child: Createaccount(),
-                  ),
-                ),
-                Pinned.fromPins(
-                  Pin(size: 220.0, middle: 0.4139),
-                  Pin(size: 48.0, middle: 0.765),
-                  child:
-                      // Adobe XD layer: 'Sign in' (component)
-                      PageLink(
-                    links: [
-                      PageLinkInfo(
-                        ease: Curves.easeInOut,
-                        duration: 0.4,
-                        pageBuilder: () => GooglePixel44XL1(),
-                      ),
-                    ],
-                    child: Createaccount(),
-                  ),
-                ),
-                Pinned.fromPins(
                   Pin(size: 300.0, middle: 0.4192),
-                  Pin(size: 92.0, middle: 0.3738),
+                  Pin(size: 92.0, middle: 0.3884),
                   child:
                       // Adobe XD layer: 'Logo' (group)
                       Stack(
@@ -117,22 +68,84 @@ class Opening extends StatelessWidget {
                   ),
                 ),
                 Pinned.fromPins(
-                  Pin(size: 173.0, middle: 0.4188),
-                  Pin(size: 20.0, end: 0.0),
+                  Pin(size: 189.0, middle: 0.4042),
+                  Pin(size: 47.0, middle: 0.7136),
                   child:
-                      // Adobe XD layer: 'Logo' (group)
+                      // Adobe XD layer: 'Sign in' (group)
+                      PageLink(
+                    links: [
+                      PageLinkInfo(
+                        ease: Curves.easeInOut,
+                        duration: 0.4,
+                        pageBuilder: () => Signin(),
+                      ),
+                    ],
+                    child: Stack(
+                      children: <Widget>[
+                        Pinned.fromPins(
+                          Pin(start: 0.0, end: 0.0),
+                          Pin(start: 0.0, end: 0.0),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(24.0),
+                              color: const Color(0xff5a5a5a),
+                            ),
+                          ),
+                        ),
+                        Pinned.fromPins(
+                          Pin(size: 64.0, middle: 0.504),
+                          Pin(size: 26.0, middle: 0.5714),
+                          child: Text(
+                            'Sign In',
+                            style: TextStyle(
+                              fontFamily: 'Roboto',
+                              fontSize: 20,
+                              color: const Color(0xffffffff),
+                              fontWeight: FontWeight.w300,
+                            ),
+                            textAlign: TextAlign.left,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Pinned.fromPins(
+                  Pin(size: 247.0, middle: 0.3972),
+                  Pin(size: 47.0, middle: 0.7774),
+                  child:
+                      // Adobe XD layer: 'Create accouht' (group)
                       Stack(
                     children: <Widget>[
                       Pinned.fromPins(
                         Pin(start: 0.0, end: 0.0),
-                        Pin(size: 20.0, middle: 0.5),
+                        Pin(start: 0.0, end: 0.0),
+                        child: PageLink(
+                          links: [
+                            PageLinkInfo(
+                              ease: Curves.easeInOut,
+                              duration: 0.4,
+                              pageBuilder: () => CreateAccount(),
+                            ),
+                          ],
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(24.0),
+                              color: const Color(0xff5a5a5a),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Pinned.fromPins(
+                        Pin(size: 140.0, middle: 0.5327),
+                        Pin(size: 26.0, middle: 0.5714),
                         child: Text(
-                          'All Rights Reserved',
+                          'Create Account',
                           style: TextStyle(
-                            fontFamily: 'Roboto Mono',
-                            fontSize: 15,
-                            color: const Color(0xff3c3c3c),
-                            fontWeight: FontWeight.w500,
+                            fontFamily: 'Roboto',
+                            fontSize: 20,
+                            color: const Color(0xffffffff),
+                            fontWeight: FontWeight.w300,
                           ),
                           textAlign: TextAlign.left,
                         ),
