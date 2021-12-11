@@ -3,6 +3,8 @@ import 'package:adobe_xd/pinned.dart';
 import 'package:adobe_xd/blend_mask.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import 'Mapshow.dart';
+
 class Recruiterdashboard extends StatelessWidget {
 
   @override
@@ -129,40 +131,61 @@ class Recruiterdashboard extends StatelessWidget {
           Pinned.fromPins(
             Pin(size: 60.0, middle: 0.3125),
             Pin(size: 33.0, middle: 0.2309),
-            child: Text(
-              'Maid',
-              style: TextStyle(
-                fontFamily: 'Roboto',
-                fontSize: 25,
-                color: const Color(0xff3b3b3b),
+            child: GestureDetector(onTap: ()async{
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) {
+                    return Mapshow();
+                  }));
+            },
+              child: Text(
+                'Maid',
+                style: TextStyle(
+                  fontFamily: 'Roboto',
+                  fontSize: 25,
+                  color: const Color(0xff3b3b3b),
+                ),
+                textAlign: TextAlign.left,
               ),
-              textAlign: TextAlign.left,
             ),
           ),
           Pinned.fromPins(
             Pin(size: 122.0, middle: 0.3759),
             Pin(size: 33.0, middle: 0.4892),
-            child: Text(
-              'Electrician',
-              style: TextStyle(
-                fontFamily: 'Roboto',
-                fontSize: 25,
-                color: const Color(0xff3b3b3b),
+            child: GestureDetector(onTap: ()async{
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) {
+                    return Mapshow();
+                  }));
+            },
+              child: Text(
+                'Electrician',
+                style: TextStyle(
+                  fontFamily: 'Roboto',
+                  fontSize: 25,
+                  color: const Color(0xff3b3b3b),
+                ),
+                textAlign: TextAlign.left,
               ),
-              textAlign: TextAlign.left,
             ),
           ),
           Pinned.fromPins(
             Pin(size: 122.0, middle: 0.3759),
             Pin(size: 33.0, middle: 0.7476),
-            child: Text(
-              'Driver',
-              style: TextStyle(
-                fontFamily: 'Roboto',
-                fontSize: 25,
-                color: const Color(0xff3b3b3b),
+            child: GestureDetector(onTap: ()async{
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) {
+                    return Mapshow();
+                  }));
+            },
+              child: Text(
+                'Driver',
+                style: TextStyle(
+                  fontFamily: 'Roboto',
+                  fontSize: 25,
+                  color: const Color(0xff3b3b3b),
+                ),
+                textAlign: TextAlign.left,
               ),
-              textAlign: TextAlign.left,
             ),
           ),
           Pinned.fromPins(

@@ -4,7 +4,15 @@ import './Forgotpassword.dart';
 import 'package:adobe_xd/page_link.dart';
 import './CreateAccountRecruite.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
+import 'Msgscren.dart';
+String email;
+String pass;
+
+
+
+final _auth = FirebaseAuth.instance;
 class Signinrecruitee extends StatelessWidget {
   Signinrecruitee({
     Key key,
@@ -35,44 +43,48 @@ class Signinrecruitee extends StatelessWidget {
                 Pinned.fromPins(
                   Pin(size: 113.0, middle: 0.5),
                   Pin(size: 46.0, middle: 0.4322),
-                  child: Text(
-                    'Sign in',
-                    style: TextStyle(
-                      fontFamily: 'Roboto',
-                      fontSize: 35,
-                      color: const Color(0xff3c3c3c),
-                      fontWeight: FontWeight.w700,
+                  child: InkWell(onTap: ()async{
+                    print('/////////////////////');
+                    final user = await _auth.signInWithEmailAndPassword(
+                        email: email, password: pass);
+                    if (user != null) {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                            return Msgscren();
+                          }));
+                    }
+                  },
+                    child: Text(
+                      'Sign insss',
+                      style: TextStyle(
+                        fontFamily: 'Roboto',
+                        fontSize: 35,
+                        color: const Color(0xff3c3c3c),
+                        fontWeight: FontWeight.w700,
+                      ),
+                      textAlign: TextAlign.left,
                     ),
-                    textAlign: TextAlign.left,
                   ),
                 ),
                 Pinned.fromPins(
                   Pin(size: 120.0, middle: 0.2634),
                   Pin(size: 26.0, middle: 0.5303),
-                  child: Text(
-                    'Username',
-                    style: TextStyle(
-                      fontFamily: 'Roboto',
-                      fontSize: 20,
-                      color: const Color(0xff3c3c3c),
-                      fontWeight: FontWeight.w300,
-                    ),
-                    textAlign: TextAlign.left,
-                  ),
+                  child: TextField(decoration: InputDecoration(
+                    hintText: 'email',
+
+                  ),onChanged: (String y){
+                    email=y;
+                  },),
                 ),
                 Pinned.fromPins(
                   Pin(size: 120.0, middle: 0.2634),
                   Pin(size: 26.0, middle: 0.6161),
-                  child: Text(
-                    'Password',
-                    style: TextStyle(
-                      fontFamily: 'Roboto',
-                      fontSize: 20,
-                      color: const Color(0xff3c3c3c),
-                      fontWeight: FontWeight.w300,
-                    ),
-                    textAlign: TextAlign.left,
-                  ),
+                  child: TextField(decoration: InputDecoration(
+                    hintText: 'Password',
+
+                  ),onChanged: (String y){
+                    pass=y;
+                  },),
                 ),
                 Pinned.fromPins(
                   Pin(size: 164.0, end: 72.0),
@@ -181,34 +193,56 @@ class Signinrecruitee extends StatelessWidget {
             Pin(size: 47.0, middle: 0.6719),
             child:
                 // Adobe XD layer: 'Sign in' (group)
-                Stack(
+                GestureDetector(onTap: ()async{ print('/////////////////////');
+                final user = await _auth.signInWithEmailAndPassword(
+                    email: email, password: pass);
+                if (user != null) {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) {
+                        return Msgscren();
+                      }));
+                }},
+                  child: Stack(
               children: <Widget>[
-                Pinned.fromPins(
-                  Pin(start: 0.0, end: 0.0),
-                  Pin(start: 0.0, end: 0.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(24.0),
-                      color: const Color(0xff5a5a5a),
+                  Pinned.fromPins(
+                    Pin(start: 0.0, end: 0.0),
+                    Pin(start: 0.0, end: 0.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(24.0),
+                        color: const Color(0xff5a5a5a),
+                      ),
                     ),
                   ),
-                ),
-                Pinned.fromPins(
-                  Pin(size: 64.0, middle: 0.504),
-                  Pin(size: 26.0, middle: 0.5714),
-                  child: Text(
-                    'Sign In',
-                    style: TextStyle(
-                      fontFamily: 'Roboto',
-                      fontSize: 20,
-                      color: const Color(0xffffffff),
-                      fontWeight: FontWeight.w300,
+                  Pinned.fromPins(
+                    Pin(size: 64.0, middle: 0.504),
+                    Pin(size: 26.0, middle: 0.5714),
+                    child: GestureDetector(onTap: ()async{
+                      print('/////////////////////');
+                      final user = await _auth.signInWithEmailAndPassword(
+                          email: email, password: pass);
+                      if (user != null) {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                              return Msgscren();
+                            }));
+                      }
+                    },
+                      child: Text(
+                        'Sign Iniii',
+                        style: TextStyle(
+                          fontFamily: 'Roboto',
+                          fontSize: 20,
+                          color: const Color(0xffffffff),
+                          fontWeight: FontWeight.w300,
+                        ),
+                        textAlign: TextAlign.left,
+                      ),
                     ),
-                    textAlign: TextAlign.left,
                   ),
-                ),
               ],
             ),
+                ),
           ),
           Pinned.fromPins(
             Pin(size: 130.0, middle: 0.5),

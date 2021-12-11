@@ -4,7 +4,12 @@ import './Forgotpassword.dart';
 import 'package:adobe_xd/page_link.dart';
 import './CreateAccountemployee.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
+import 'Msgscren.dart';
+final _auth = FirebaseAuth.instance;
+String email;
+String pass;
 class Signinemployee extends StatelessWidget {
   Signinemployee({
     Key key,
@@ -34,44 +39,47 @@ class Signinemployee extends StatelessWidget {
                 Pinned.fromPins(
                   Pin(size: 113.0, middle: 0.5),
                   Pin(size: 46.0, middle: 0.4322),
-                  child: Text(
-                    'Sign in',
-                    style: TextStyle(
-                      fontFamily: 'Roboto',
-                      fontSize: 35,
-                      color: const Color(0xff3c3c3c),
-                      fontWeight: FontWeight.w700,
+                  child: GestureDetector(onTap: ()async{
+                    final user = await _auth.signInWithEmailAndPassword(
+                        email: email, password: pass);
+                    if (user != null) {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                            return Msgscren();
+                          }));
+                    }
+                  },
+                    child: Text(
+                      'Sign in',
+                      style: TextStyle(
+                        fontFamily: 'Roboto',
+                        fontSize: 35,
+                        color: const Color(0xff3c3c3c),
+                        fontWeight: FontWeight.w700,
+                      ),
+                      textAlign: TextAlign.left,
                     ),
-                    textAlign: TextAlign.left,
                   ),
                 ),
                 Pinned.fromPins(
-                  Pin(size: 120.0, middle: 0.2634),
+                  Pin(size: 200.0, middle: 0.2634),
                   Pin(size: 26.0, middle: 0.5303),
-                  child: Text(
-                    'Username',
-                    style: TextStyle(
-                      fontFamily: 'Roboto',
-                      fontSize: 20,
-                      color: const Color(0xff3c3c3c),
-                      fontWeight: FontWeight.w300,
-                    ),
-                    textAlign: TextAlign.left,
-                  ),
+                  child: TextField(decoration: InputDecoration(
+                    hintText: 'Email',
+
+                  ),onChanged: (String y){
+                    email=y;
+                  },),
                 ),
                 Pinned.fromPins(
                   Pin(size: 120.0, middle: 0.2634),
                   Pin(size: 26.0, middle: 0.6161),
-                  child: Text(
-                    'Password',
-                    style: TextStyle(
-                      fontFamily: 'Roboto',
-                      fontSize: 20,
-                      color: const Color(0xff3c3c3c),
-                      fontWeight: FontWeight.w300,
-                    ),
-                    textAlign: TextAlign.left,
-                  ),
+                  child: TextField(decoration: InputDecoration(
+                    hintText: 'Password',
+
+                  ),onChanged: (String y){
+                    pass=y;
+                  },),
                 ),
                 Pinned.fromPins(
                   Pin(size: 164.0, end: 72.0),
