@@ -10,7 +10,6 @@ String username='';
 String email='';
 String phoneno='';
 String pass='';
-final controller = Get.put(Controller());
 class CreateAccountRecruiter extends StatelessWidget {
   CreateAccountRecruiter({
     Key key,
