@@ -4,7 +4,9 @@ import 'package:adobe_xd/blend_mask.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class GooglePixel44XL1 extends StatelessWidget {
-
+  GooglePixel44XL1({
+    Key key,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(

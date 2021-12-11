@@ -1,12 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:adobe_xd/pinned.dart';
+import 'package:plumbr/Recruiter.dart';
+import 'package:plumbr/Recruiterdashboard.dart';
+
+import 'package:plumbr/Start.dart';
 import './Forgotpassword.dart';
 import 'package:adobe_xd/page_link.dart';
-import './CreateAccount.dart';
+import './CreateAccountRecruiter.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
-class Signin extends StatelessWidget {
-
+import 'package:firebase_auth/firebase_auth.dart';
+final _auth = FirebaseAuth.instance;
+String email='';
+String pass='';
+class Signinrecruiter extends StatelessWidget {
+  Signinrecruiter({
+    Key key,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,22 +53,26 @@ class Signin extends StatelessWidget {
                   ),
                 ),
                 Pinned.fromPins(
-                  Pin(size: 200.0, middle: 0.2788),
-                  Pin(size: 26.0, middle: 0.5023),
+                  Pin(size: 200.0, middle: 0.2634),
+                  Pin(size: 26.0, middle: 0.5303),
                   child: TextField(decoration: InputDecoration(
                     hintText: 'Username',
-                  ),),
+                  ),onChanged: (String x){
+                    email=x;
+                  },),
                 ),
                 Pinned.fromPins(
-                  Pin(size: 200.0, middle: 0.2788),
-                  Pin(size: 56.0, middle: 0.588),
-                  child:  TextField(obscureText: true,decoration: InputDecoration(
+                  Pin(size: 200.0, middle: 0.2634),
+                  Pin(size: 26.0, middle: 0.6161),
+                  child: TextField(decoration: InputDecoration(
                     hintText: 'Password',
-                  ),),
+                  ),onChanged: (String y){
+                    pass=y;
+                  },),
                 ),
                 Pinned.fromPins(
-                  Pin(size: 164.0, end: 66.0),
-                  Pin(size: 26.0, middle: 0.6677),
+                  Pin(size: 164.0, end: 72.0),
+                  Pin(size: 26.0, middle: 0.6958),
                   child: PageLink(
                     links: [
                       PageLinkInfo(
@@ -136,7 +149,7 @@ class Signin extends StatelessWidget {
                       PageLinkInfo(
                         ease: Curves.easeInOut,
                         duration: 0.4,
-                        pageBuilder: () => CreateAccount(),
+                        pageBuilder: () => CreateAccountRecruiter(),
                       ),
                     ],
                     child: Text(
@@ -161,7 +174,7 @@ class Signin extends StatelessWidget {
           ),
           Pinned.fromPins(
             Pin(size: 189.0, middle: 0.4978),
-            Pin(size: 47.0, middle: 0.627),
+            Pin(size: 47.0, middle: 0.6719),
             child:
                 // Adobe XD layer: 'Sign in' (group)
                 Stack(
@@ -176,15 +189,50 @@ class Signin extends StatelessWidget {
                     ),
                   ),
                 ),
+                GestureDetector(onTap: ()async{
+                  final user = await _auth.signInWithEmailAndPassword(
+                      email: email, password: pass);
+                  if (user != null) {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                          return Recruiterdashboard();
+                        }));
+                  }
+                },
+                  child: Pinned.fromPins(
+                    Pin(size: 64.0, middle: 0.504),
+                    Pin(size: 26.0, middle: 0.5714),
+                    child: Text(
+                      'Sign In',
+                      style: TextStyle(
+                        fontFamily: 'Roboto',
+                        fontSize: 20,
+                        color: const Color(0xffffffff),
+                        fontWeight: FontWeight.w300,
+                      ),
+                      textAlign: TextAlign.left,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Pinned.fromPins(
+            Pin(size: 119.0, middle: 0.5017),
+            Pin(size: 39.0, start: 95.0),
+            child:
+                // Adobe XD layer: 'Logo' (group)
+                Stack(
+              children: <Widget>[
                 Pinned.fromPins(
-                  Pin(size: 64.0, middle: 0.504),
-                  Pin(size: 26.0, middle: 0.5714),
+                  Pin(start: 0.0, end: 0.0),
+                  Pin(size: 39.0, middle: 0.5),
                   child: Text(
-                    'Sign In',
+                    'Recruiter',
                     style: TextStyle(
                       fontFamily: 'Roboto',
-                      fontSize: 20,
-                      color: const Color(0xffffffff),
+                      fontSize: 30,
+                      color: const Color(0xff3b3b3b),
                       fontWeight: FontWeight.w300,
                     ),
                     textAlign: TextAlign.left,

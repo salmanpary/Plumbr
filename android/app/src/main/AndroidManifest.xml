@@ -5,6 +5,8 @@
    <application
         android:label="plumbr"
         android:icon="@mipmap/ic_launcher">
+       <meta-data android:name="com.google.android.geo.API_KEY"
+           android:value="AIzaSyC0mDpWjR6y6mIwWIpRV6O7uAeQr_gaFSI"/>
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

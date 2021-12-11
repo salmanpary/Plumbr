@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:plumbr/Mapshow.dart';
 import 'package:plumbr/Opening.dart';
+import 'package:plumbr/Start.dart';
 import 'package:plumbr/Test.dart';
 import 'package:get/get.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -19,7 +21,7 @@ class MyApp extends StatelessWidget {
 
         primarySwatch: Colors.blue,
       ),
-      home: Opening(),
+      home: Start(),
     );
   }
 }
