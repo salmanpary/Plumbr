@@ -3,16 +3,45 @@ import 'package:adobe_xd/pinned.dart';
 import 'package:plumbr/Signinrecruitee.dart';
 import './Signinemployee.dart';
 import 'package:adobe_xd/page_link.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:geolocator/geolocator.dart';
 final _auth = FirebaseAuth.instance;
+double latitude;
+double longitude;
 String username='';
 String email='';
 String phoneno='';
 String pass='';
-class CreateAccountemployee extends StatelessWidget {
-  CreateAccountemployee({
-    Key key,
-  }) : super(key: key);
+final fire = FirebaseFirestore.instance;
+
+class CreateAccountemployee extends StatefulWidget {
+
+
+  @override
+  State<CreateAccountemployee> createState() => _CreateAccountemployeeState();
+}
+
+class _CreateAccountemployeeState extends State<CreateAccountemployee> {
+  @override
+  void initState() {
+    getcurrentlocation();
+    super.initState();
+  }
+  Future<void> getcurrentlocation() async {
+    try {
+      Position position = await Geolocator.getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.high);
+      latitude = position.latitude;
+      longitude = position.longitude;
+      print(position);
+
+
+    } catch (e) {
+      print(e);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -92,7 +121,7 @@ class CreateAccountemployee extends StatelessWidget {
 
                   ),onChanged: (String y){
                     pass=y;
-                  },),
+                  }),
                 ),
                 Pinned.fromPins(
                   Pin(size: 108.0, middle: 0.5211),
@@ -194,10 +223,13 @@ class CreateAccountemployee extends StatelessWidget {
                   child: GestureDetector(onTap: ()async{
                     final newuser = await _auth.createUserWithEmailAndPassword(
                         email: email, password: pass);
+                    fire.collection('employee').add({
+                      'latittude':latitude,
+                      'longitude':longitude
+                    });
                     if(newuser!=null){
 
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
+                      Navigator.push(context,                    MaterialPageRoute(builder: (context) {
                             return Signinrecruitee();
                           }));
                     }
