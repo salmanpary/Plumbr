@@ -44,32 +44,18 @@ class Signin extends StatelessWidget {
                   ),
                 ),
                 Pinned.fromPins(
-                  Pin(size: 120.0, middle: 0.2788),
+                  Pin(size: 200.0, middle: 0.2788),
                   Pin(size: 26.0, middle: 0.5023),
-                  child: Text(
-                    'Username',
-                    style: TextStyle(
-                      fontFamily: 'Roboto',
-                      fontSize: 20,
-                      color: const Color(0xff3c3c3c),
-                      fontWeight: FontWeight.w300,
-                    ),
-                    textAlign: TextAlign.left,
-                  ),
+                  child: TextField(decoration: InputDecoration(
+                    hintText: 'Username',
+                  ),),
                 ),
                 Pinned.fromPins(
-                  Pin(size: 120.0, middle: 0.2788),
-                  Pin(size: 26.0, middle: 0.588),
-                  child: Text(
-                    'Password',
-                    style: TextStyle(
-                      fontFamily: 'Roboto',
-                      fontSize: 20,
-                      color: const Color(0xff3c3c3c),
-                      fontWeight: FontWeight.w300,
-                    ),
-                    textAlign: TextAlign.left,
-                  ),
+                  Pin(size: 200.0, middle: 0.2788),
+                  Pin(size: 56.0, middle: 0.588),
+                  child:  TextField(obscureText: true,decoration: InputDecoration(
+                    hintText: 'Password',
+                  ),),
                 ),
                 Pinned.fromPins(
                   Pin(size: 164.0, end: 66.0),

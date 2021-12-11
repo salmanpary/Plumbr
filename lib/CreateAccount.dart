@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:adobe_xd/pinned.dart';
 import './Signin.dart';
 import 'package:adobe_xd/page_link.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
+final _auth = FirebaseAuth.instance;
 class CreateAccount extends StatelessWidget {
 
   @override
@@ -47,60 +48,32 @@ class CreateAccount extends StatelessWidget {
                   ),
                 ),
                 Pinned.fromPins(
-                  Pin(size: 120.0, middle: 0.2762),
+                  Pin(size: 200.0, middle: 0.2762),
                   Pin(size: 26.0, middle: 0.4659),
-                  child: Text(
-                    'Username',
-                    style: TextStyle(
-                      fontFamily: 'Roboto',
-                      fontSize: 20,
-                      color: const Color(0xff3c3c3c),
-                      fontWeight: FontWeight.w300,
-                    ),
-                    textAlign: TextAlign.left,
-                  ),
+                  child: TextField(decoration: InputDecoration(
+                    hintText: 'Username',
+                  ),),
                 ),
                 Pinned.fromPins(
-                  Pin(size: 120.0, middle: 0.2762),
+                  Pin(size: 200.0, middle: 0.2762),
                   Pin(size: 26.0, middle: 0.5357),
-                  child: Text(
-                    'Email Id',
-                    style: TextStyle(
-                      fontFamily: 'Roboto',
-                      fontSize: 20,
-                      color: const Color(0xff3c3c3c),
-                      fontWeight: FontWeight.w300,
-                    ),
-                    textAlign: TextAlign.left,
-                  ),
+                  child: TextField(decoration: InputDecoration(
+                    hintText: 'Email Id',
+                  ),),
                 ),
                 Pinned.fromPins(
-                  Pin(size: 136.0, middle: 0.288),
+                  Pin(size: 200.0, middle: 0.288),
                   Pin(size: 26.0, middle: 0.6055),
-                  child: Text(
-                    'Phone Number',
-                    style: TextStyle(
-                      fontFamily: 'Roboto',
-                      fontSize: 20,
-                      color: const Color(0xff3c3c3c),
-                      fontWeight: FontWeight.w300,
-                    ),
-                    textAlign: TextAlign.left,
-                  ),
+                  child: TextField(decoration: InputDecoration(
+                    hintText: 'Phone number',
+                  ),),
                 ),
                 Pinned.fromPins(
-                  Pin(size: 120.0, middle: 0.2762),
+                  Pin(size: 200.0, middle: 0.2762),
                   Pin(size: 26.0, middle: 0.6753),
-                  child: Text(
-                    'Password',
-                    style: TextStyle(
-                      fontFamily: 'Roboto',
-                      fontSize: 20,
-                      color: const Color(0xff3c3c3c),
-                      fontWeight: FontWeight.w300,
-                    ),
-                    textAlign: TextAlign.left,
-                  ),
+                  child: TextField(decoration: InputDecoration(
+                    hintText: 'Password',
+                  ),),
                 ),
                 Pinned.fromPins(
                   Pin(size: 108.0, middle: 0.5211),
